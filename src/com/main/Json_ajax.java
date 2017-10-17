@@ -44,7 +44,7 @@ public class Json_ajax{
 		String str1= str.replace("null", "");
 		JSONObject obj = new JSONObject(str1);
 		
-		
+		/* This is one way of getting the data from the json string */
 		
 		POJO pojo = new POJO();
 		pojo.setName(obj.getString("name"));
@@ -52,6 +52,7 @@ public class Json_ajax{
 		PersistenceManager pm = PMF.get().getPersistenceManager();
 		pm.makePersistent(pojo);
 	 
+		// Using object mapper is the better way to get json as it is faster than the json object creation 
 		ObjectMapper mapperobj = new ObjectMapper();
 		String  jsonStr = mapperobj.writeValueAsString(pojo);
 		System.out.println("JSON  :"+jsonStr);
